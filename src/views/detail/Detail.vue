@@ -1,17 +1,25 @@
 <template>
   <div id="detail">
-    <detail-nav-bar></detail-nav-bar>
-    <detail-swiper :top-images="topImages"></detail-swiper>
-    <detail-base-info :goods="goods"></detail-base-info>
+    <detail-nav-bar class="detail-nav"></detail-nav-bar>
+    <scroll class="content">
+      <detail-swiper :top-images="topImages"></detail-swiper>
+      <detail-base-info :goods="goods"></detail-base-info>
+      <detail-shop-info :shop="shop"></detail-shop-info>
+      <detail-goods-info :detail-info="detailInfo"></detail-goods-info>
+    </scroll>
+    
     
   </div>
   
 </template>
 
 <script>
-import DetailNavBar from './childComps/DetailNavBar';
+import DetailNavBar from './childComps/DetailNavBar'
 import DetailSwiper from './childComps/DetailSwiper'
-import DetailBaseInfo from "./childComps/DetailBaseInfo";
+import DetailBaseInfo from "./childComps/DetailBaseInfo"
+import DetailShopInfo from "./childComps/DetailShopInfo"
+import DetailGoodsInfo from "./childComps/DetailGoodsInfo"
+import Scroll from "components/common/scroll/Scroll"
 import {getDetail,Goods,Shop} from '../../network/detail'
 
 export default {
@@ -19,15 +27,18 @@ export default {
   components: {
     DetailNavBar,
     DetailSwiper,
-    DetailBaseInfo
+    DetailBaseInfo,
+    DetailShopInfo,
+    Scroll,
+    DetailGoodsInfo
   },
   data() {
     return {
       iid:null,
       topImages: [],
       goods:{},
-      
-      
+      shop:{},
+      detailInfo:{}
     }
   },
   
@@ -46,11 +57,30 @@ export default {
 
       //3.创建店铺信息对象
       this.shop = new Shop(data.shopInfo)
+      // 4.保存商品的详情数据
+      this.detailInfo = data.detailInfo;
     })
   }
 }
 </script>
 
 <style scoped>
+#detail {
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.detail-nav {
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  
+}
+
+.content{
+  height: calc(100% - 44px);
+}
 
 </style>
