@@ -3,6 +3,7 @@
     <detail-nav-bar></detail-nav-bar>
     <detail-swiper :top-images="topImages"></detail-swiper>
     <detail-base-info :goods="goods"></detail-base-info>
+    <detail-shop-info :shop="shop"></detail-shop-info>
     
   </div>
   
@@ -12,6 +13,7 @@
 import DetailNavBar from './childComps/DetailNavBar';
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailBaseInfo from "./childComps/DetailBaseInfo";
+import DetailShopInfo from "./childComps/DetailShopInfo"
 import {getDetail,Goods,Shop} from '../../network/detail'
 
 export default {
@@ -19,13 +21,15 @@ export default {
   components: {
     DetailNavBar,
     DetailSwiper,
-    DetailBaseInfo
+    DetailBaseInfo,
+    DetailShopInfo
   },
   data() {
     return {
       iid:null,
       topImages: [],
       goods:{},
+      shop:{}
       
       
     }
