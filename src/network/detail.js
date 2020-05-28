@@ -23,6 +23,8 @@ export class Goods {
 
 }
 
+
+
 export class Shop {
   constructor(shopInfo) {
     this.logo = shopInfo.shopLogo;
@@ -31,5 +33,13 @@ export class Shop {
     this.sells = shopInfo.cSells;
     this.score = shopInfo.score;
     this.goodsCount = shopInfo.cGoods
+  }
+}
+
+export class GoodsParam {
+  constructor(info,rule) {
+    this.image = info.images ? info.images[0] : '';
+    this.infos = info.set;
+    this.sizes = rule.tables;
   }
 }
